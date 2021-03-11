@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form id="printForm" action="home/getfile" method="post" target="frame" class="hidden">
+        <input class="btn btn-warning" type="submit" value="Распечатать" style="margin: 5px" />
+    </form>
+    <button onclick="beginPrint()" class="btn btn-warning">Print</button>
+    <button onclick="beginDownload()" class="btn btn-warning">Dowload</button>
+    <iframe id="frame" name="frame" class="hidden"></iframe>
+
+    <div class="popup" id="popupDownload">
+        <div class="panel">
+            <h3>Your document is ready</h3>
+            <p></p>
+            <form id="downloadForm" action="home/getfile" method="post" target="frame">
+                <input class="btn btn-warning" type="submit" value="Download" style="margin: 5px" />
+            </form>
+            <button class="btn btn-warning" style="margin-top: 10px"
+                    id="close" onclick="$('#popupDownload').css('display', 'none')">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <div class="popup" id="popupPrint">
+        <div class="panel">
+            <h3>Printing should have started</h3>
+            <h5>Didn't print correctly?</h5>
+            <a href="" id="ref">Open a printable PDF of your document</a>
+            <p>
+                <button class="btn btn-outline-warning" style="margin-top: 10px"
+                        id="close" onclick="$('#popupPrint').css('display', 'none')">
+                    Close
+                </button>
+            </p>
+        </div>
+    </div>
+
+    <div class="popup" id="waiting">
+        <div class="panel">
+            <h3>Preparing your document...</h3>
+        </div>
+    </div>
+</div>
+
