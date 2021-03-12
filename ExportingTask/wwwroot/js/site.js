@@ -14,7 +14,7 @@ function newWindowPrinting() {
 
 function beginPrint() {
     $("#waiting").css('display', 'block');
-    StartLoadingFile('print', function () {
+    startLoadingFile('print', function () {
         $("#printForm").submit();
         $("#waiting").css('display', 'none');
         $("#popupPrint").css('display', 'block');
@@ -27,29 +27,29 @@ function beginPrint() {
                     clearInterval(interval);
                 }
             }, 100);
-        } 
+        }
     })
 }
 
 function beginDownload() {
     $("#waiting").css('display', 'block');
-    StartLoadingFile('download', function () {
+    startLoadingFile('download', function () {
         $("#waiting").css('display', 'none');
         $("#popupDownload").css('display', 'block');
     })
 }
 
-function StartLoadingFile(mode, callback) {
+function startLoadingFile(mode, callback) {
     $.ajax({
         method: "POST",
         url: "/Home/BeginLoadingFile",
         data: { mode: mode }
     }).done(function (res) {
-        TryGetFile(callback);
+        tryGetFile(callback);
     });
 }
 
-function TryGetFile(callback) {
+function tryGetFile(callback) {
     $.ajax({
         method: "POST",
         url: "/Home/GetFileTaskStatus",
@@ -57,7 +57,7 @@ function TryGetFile(callback) {
         if (res['success']) {
             callback();
         } else {
-            setTimeout(function () { TryGetFile(callback) }, 100);
+            setTimeout(function () { tryGetFile(callback) }, 100);
         }
     });
 }
