@@ -28,7 +28,8 @@ a.navbar-brand {
     left: 30%;
     top: 40%;
     width: 40%;
-    height: 20%;
+    min-width: 300px;
+    height: 200px;
     background-color: ghostwhite;
     border: 3px solid orange;
 }
